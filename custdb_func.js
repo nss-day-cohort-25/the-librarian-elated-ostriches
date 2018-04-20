@@ -1,5 +1,5 @@
 //create a function that does the following:
-const customerdbcreate = ( genre, shelf, fname, lname, address, card, checkout, checkin, database) => {
+const customerdbAdd = ( genre, shelf, fname, lname, address, card, checkout, checkin, database) => {
     database.push(
         {
             genre,
