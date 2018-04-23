@@ -8,8 +8,23 @@ const customerdbAdd = ( genre, shelf, fname, lname, address, card, checkout, che
             lname,
             address,
             card,
-            checkout,
-            checkin
+            checkout: (input) => {
+                libraryDB.forEach(element => {
+                    
+                    if (element.title === input || element.isbn === input){
+                        return element
+                    }
+                });
+                    
+                },
+            checkin: (input) => {
+                this.shelf.forEach(element => {
+                    
+                    if (element.title === input || element.isbn === input){
+                        return element
+                    }
+                });    
+                }
 
         }
     )
