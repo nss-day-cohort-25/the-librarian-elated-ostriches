@@ -1,5 +1,5 @@
 //create a function that does the following:
-const customerdbAdd = ( genre, shelf, fname, lname, address, card, checkout, checkin, database) => {
+const customerdbAdd = ( genre, shelf, fname, lname, address, checkout, checkin, database) => {
     database.push(
         {
             genre,
@@ -7,7 +7,7 @@ const customerdbAdd = ( genre, shelf, fname, lname, address, card, checkout, che
             fname,
             lname,
             address,
-            card,
+            card: "",
             checkout: (input) => {
                 libraryDB.forEach(element => {
                     
