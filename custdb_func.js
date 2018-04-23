@@ -11,7 +11,7 @@ const customerdbAdd = ( genre, shelf, fname, lname, address, card, checkout, che
             checkout: (input) => {
                 libraryDB.forEach(element => {
                     
-                    if (title === input || isbn === input){
+                    if (element.title === input || element.isbn === input){
                         return book
                     }
                 });
