@@ -12,14 +12,21 @@ const mockCustomerShelf = []
 
 //checkout
 
-function checkOut (libraryDB, bookInfo, userBookShelf) {
+function checkOut (libraryDB, bookInfo, user, dbOfUsers) {
     
     for(let i = 0; i < libraryDB.length; i++) {
         if (bookInfo === libraryDB[i]) {
             if (libraryDB[i].checkout === false) {
                 libraryDB[i].checkout = true
-                userBookShelf.push(libraryDB[i])
+                user.push(libraryDB[i])
                 bookInfo.dueDate = Date.now + 604800
+                if (user.card === "") {
+                    if (dbOfUsers.length === 0) {
+                        user.card = 100000
+                    }
+                    else {
+                        user.card = dbOfUsers[dbOfUsers.length].card + 1
+                    }
             }
         }
     }
@@ -27,14 +34,14 @@ function checkOut (libraryDB, bookInfo, userBookShelf) {
 
 //checkin
 
-function checkIn (bookInfo, userBookShelf, libraryDB) {
-    userBookShelf.forEach(element => {
-        for(let i = userBookShelf.length - 1; i >= 0; i--) {
-            if(userBookShelf[i].isbn === bookInfo.isbn) {
-               userBookShelf.splice(i, 1);
+function checkIn (bookInfo, user, libraryDB) {
+    user.shelf.forEach(element => {
+        for(let i = user.shelf.length - 1; i >= 0; i--) {
+            if(user.shelf[i].isbn === bookInfo.isbn) {
+               user.shelf.splice(i, 1);
             }
         }
-        
+
     });
     for (let index = 0; index < libraryDB.length; index++) {
         if (libraryDB[index] === bookInfo) {
@@ -54,7 +61,7 @@ function checkIn (bookInfo, userBookShelf, libraryDB) {
 
 function checkGenre (bookGenreString, libraryDB) {
     for (let index = 0; index < libraryDB.length; index++) {
-        if (libraryDB[index].genre ===  bookGenreString) {
+        if (libraryDB[index].genre ===  bookGenreString && libraryDB[index].checkout === false) {
             let results = []
             results.push(libraryDB[index])
             return(results)
@@ -64,22 +71,8 @@ function checkGenre (bookGenreString, libraryDB) {
     }
 }
 
-//user register 
-const registerUser = function (user, dbOfUsers) { 
-    if (user.card === "") {
-        if (dbOfUsers.length === 0) {
-            user.card = 100000
-        }
-        else {
-            user.card = dbOfUsers[dbOfUsers.length].card + 1
-        }
-    }
-}
 
-console.log(mockLibrary)
-console.log(mockCustomerShelf)
-checkOut(mockLibrary, a, mockCustomerShelf)
-console.log(mockCustomerShelf)
-checkIn(a, mockCustomerShelf, mockLibrary)
-console.log(mockCustomerShelf)
-console.log(checkGenre("a", mockLibrary))
+
+
+
+
