@@ -1,15 +1,3 @@
-const a= {title: "a",
-author: "a",
-genre: "a",
-isbn: "a",
-checkout: false,
-dueDate: ''}
-const mockLibrary = [
-    a 
-]
-
-const mockCustomerShelf = []
-
 //checkout
 
 function checkOut (libraryDB, bookInfo, user, dbOfUsers) {
